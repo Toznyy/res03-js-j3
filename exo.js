@@ -1,4 +1,4 @@
-// Etape 0.5
+//////////////////////////////////////////////////: Etape 0.5
 
 let users = [
     {
@@ -163,7 +163,7 @@ let users = [
     }
 ];
 
-// Etape 1
+//////////////////////////////////////////////////Etape 1
 
 function countActiveUsers(users) {
 	let count = 0;
@@ -177,21 +177,50 @@ function countActiveUsers(users) {
 
 console.log(`We currently have ${ countActiveUsers(users) } active users.`);
 
-// Etape 2
+//////////////////////////////////////////////////Etape 2
 
 function getActiveUsers(users) {
-	for (let i = 0; i < users.length; i++){
-		let activeUsers = users[i].isActive;
+
+	let activeUsers = []
+	for (let i = 0; i < users.length; i++) {
+		if (users[i].isActive === true) {
+			activeUsers.push(users[i]);
+		}
 	}
+	return activeUsers;
 }
 
 function hasBlueEyes(activeUsers) {
+
 	let count = 0;
-	for (let i = 0; i < users.length; i++){
-		if (activeUsers[i].eyeColor === "blue"){
-			count++
+	for (let i = 0; i < activeUsers.length; i++) {
+		if (activeUsers[i].eyeColor === "brown") {
+			count++;
 		}
 	}
+	return count;
 }
 
-console.log(`Out of our currently ${ countActiveUsers(users) } active users, ${ hasBlueEyes(activeUsers) } have blue eyes.`);
+console.log(`Out of our currently ${ countActiveUsers(users) } active users, ${ hasBlueEyes(getActiveUsers(users)) } have blue eyes.`);
+
+//////////////////////////////////////////////////Etape 3
+
+function getActiveUsersAges(activeUsers) {
+	
+	let activeUsersAges = [];
+	for (let i = 0; i < activeUsers.length; i++) {
+		activeUsersAges.push(activeUsers[i].age);
+	}
+	return activeUsersAges;
+}
+
+function computeActiveUsersAverageAge(ages) {
+	let sum = 0;
+	for (let i = 0; i < ages.length; i++) {
+		sum = sum + ages[i];
+	}
+	let average = sum / ages.length;
+	return average;
+}
+
+console.log(`Out of our currently ${ countActiveUsers(users) } active users, the average age is ${ computeActiveUsersAverageAge(getActiveUsersAges(getActiveUsers(users)))}.`);
